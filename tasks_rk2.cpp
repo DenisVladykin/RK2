@@ -7,20 +7,28 @@
 //task1
 Node::Node()
 {
-
+    marker = 0;
+    name = countNodes;
 }
 Node::Node(int nameNode)
 {
-
+    marker = 0;
+    name = nameNode;
 }
 Node::~Node()
 {
-
+    auto iter = listChilds.begin();
+    while(iter != listChilds.end())
+    {
+        Node* temp = *iter;
+        delete temp;
+        iter++;
+    }
 }
 
 Graph::Graph()
 {
-
+    head = new Node;
 }
 Graph::Graph(int countNodes)
 {
@@ -34,7 +42,9 @@ int Graph::buildTreeBFS(int countNodes)
 {
 
 }
-int Graph::buildTreeDFS(int countNodes) {}
+int Graph::buildTreeDFS(int countNodes) {
+    return 1;
+}
 void Graph::BFS()
 {
 
@@ -50,6 +60,13 @@ std::pair<bool, list<int>> Graph::searchBFS(int nameNode)
 pair<int/*index el*/, int /*count call*/> binSearch(int* ar, int sizeAr, int el)
 {
     static int cnt = 0;
+    static int test = 0;
+    static bool res = false;
+    if (!res)
+    {
+        cnt = cnt - test;
+        res = true;
+    }
     cnt++;
     if (sizeAr <= 0)
     {
@@ -63,6 +80,8 @@ pair<int/*index el*/, int /*count call*/> binSearch(int* ar, int sizeAr, int el)
         pair<int, int> temp;
         temp.first = sizeAr / 2;
         temp.second = cnt;
+        test = cnt;
+        res = false;
         return temp;
     }
 

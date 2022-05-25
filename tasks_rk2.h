@@ -21,6 +21,7 @@ struct Node {
 
     Node* parent;
     std::list<Node*> listChilds;
+    int marker;
     int name;
     static int countNodes;
 };
